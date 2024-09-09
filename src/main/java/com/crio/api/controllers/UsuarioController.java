@@ -6,10 +6,10 @@ import com.crio.api.domain.usuario.UsuarioRequestDTO;
 import com.crio.api.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 // @Controller Controla o fluxo de dados sendo eles imagens,infos e etc.
 @RestController// Controla o fluxo de dados apenas em JSON
@@ -20,7 +20,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping(consumes = "multipart/form-data")
-    public ResponseEntity<Usuario> createUsuario(
+    public ResponseEntity<Usuario> create(
             @RequestParam("nomeCompleto") String nomeCompleto,
             @RequestParam("email") String email,
             @RequestParam("senha") String senha,
@@ -33,5 +33,15 @@ public class UsuarioController {
         return ResponseEntity.ok(newUsuario);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Usuario>> getAllUsers(){
+        List<Usuario> usuarios = this.usuarioService.getAllUsers();
+        return ResponseEntity.ok(usuarios);
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> getUserById(@PathVariable("id")UUID id){
+        Usuario usuario = this.usuarioService.getUserById(id);
+        return ResponseEntity.ok(usuario);
+    }
 }
