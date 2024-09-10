@@ -2,8 +2,10 @@ package com.crio.api.controllers;
 
 import com.crio.api.domain.evento.Evento;
 import com.crio.api.domain.evento.EventoRequestDTO;
+import com.crio.api.domain.evento.EventoResponseDTO;
 import com.crio.api.domain.usuario.Usuario;
 import com.crio.api.domain.usuario.UsuarioRequestDTO;
+import com.crio.api.domain.usuario.UsuarioResponseDTO;
 import com.crio.api.service.EventoService;
 import com.crio.api.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +31,11 @@ public class EventoController {
             @RequestParam("fim") LocalDateTime fim,
             @RequestParam("publicoAlvo") int publicoAlvo,
             @RequestParam("local") String local,
-            @RequestParam("privado") boolean privado
+            @RequestParam("privado") boolean privado,
+            @RequestParam("usuario") Usuario usuario
     ) {
 
-        EventoRequestDTO eventoRequestDTO = new EventoRequestDTO(titulo, descricao, inicio, fim, publicoAlvo, local, privado);
+        EventoRequestDTO eventoRequestDTO = new EventoRequestDTO(titulo, descricao, inicio, fim, publicoAlvo, local, privado, usuario);
 
         Evento newEvento = this.eventoService.createEvento(eventoRequestDTO);
 
@@ -49,6 +52,12 @@ public class EventoController {
     public ResponseEntity<Evento> getEventById(@PathVariable("id")UUID id) {
         Evento evento = this.eventoService.getEventById(id);
         return ResponseEntity.ok(evento);
+    }
+
+    @PutMapping("/{id}")
+        public ResponseEntity<Evento> updateEvent(@PathVariable("id")UUID id, EventoResponseDTO eventoResponseDTO){
+        Evento updateEvent = this.eventoService.updateEvent(id, eventoResponseDTO );
+        return ResponseEntity.ok(updateEvent);
     }
 
     @DeleteMapping("/{id}")

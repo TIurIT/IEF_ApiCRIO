@@ -1,5 +1,7 @@
 package com.crio.api.domain.evento;
 
+import com.crio.api.domain.usuario.Usuario;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -11,6 +13,7 @@ public record EventoResponseDTO(
         LocalDateTime fim,
         int publicoAlvo,
         String local,
-        boolean privado
+        boolean privado,
+        Usuario usuario
 ) {
 }

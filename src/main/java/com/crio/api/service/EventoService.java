@@ -48,6 +48,7 @@ public class EventoService {
         updatedEvento.setPublicoAlvo(eventoResponseDTO.publicoAlvo());
         updatedEvento.setLocal(eventoResponseDTO.local());
         updatedEvento.setPrivado(eventoResponseDTO.privado());
+        updatedEvento.setUsuario(eventoResponseDTO.usuario());
 
         return eventoRepository.save(updatedEvento);
     }
