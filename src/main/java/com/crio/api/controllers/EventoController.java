@@ -50,4 +50,10 @@ public class EventoController {
         Evento evento = this.eventoService.getEventById(id);
         return ResponseEntity.ok(evento);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable("id")UUID id) {
+        this.eventoService.deleteEvent(id);
+        return ResponseEntity.noContent().build();
+    }
 }
