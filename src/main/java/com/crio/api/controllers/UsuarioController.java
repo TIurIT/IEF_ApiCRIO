@@ -3,6 +3,7 @@ package com.crio.api.controllers;
 
 import com.crio.api.domain.usuario.Usuario;
 import com.crio.api.domain.usuario.UsuarioRequestDTO;
+import com.crio.api.domain.usuario.UsuarioResponseDTO;
 import com.crio.api.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +44,11 @@ public class UsuarioController {
     public ResponseEntity<Usuario> getUserById(@PathVariable("id")UUID id){
         Usuario usuario = this.usuarioService.getUserById(id);
         return ResponseEntity.ok(usuario);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> updateUser(@PathVariable("id")UUID id, UsuarioResponseDTO usuarioResponseDTO){
+        Usuario updatedUsuario = this.usuarioService.updateUser(id, usuarioResponseDTO );
+        return ResponseEntity.ok(updatedUsuario);
     }
 }

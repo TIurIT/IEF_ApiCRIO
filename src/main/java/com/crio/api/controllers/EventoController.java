@@ -47,7 +47,7 @@ public class EventoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Evento> getEventById(@PathVariable("id")UUID id) {
-        Evento evento = this.eventoService.getEventsById(id);
+        Evento evento = this.eventoService.getEventById(id);
         return ResponseEntity.ok(evento);
     }
 }
