@@ -1,6 +1,7 @@
 package com.crio.api.domain.convite;
 
 
+import com.crio.api.domain.evento.Evento;
 import com.crio.api.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,10 @@ public class Convite {
 
     @Column(name = "confirmacaoPresenca")
     private boolean confirmacaoPresenca;
+
+    @OneToOne
+    @JoinColumn(name = "evento_id")
+    private Evento evento;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")

@@ -3,7 +3,6 @@ package com.crio.api.service;
 import com.crio.api.domain.evento.Evento;
 import com.crio.api.domain.evento.EventoRequestDTO;
 import com.crio.api.domain.evento.EventoResponseDTO;
-import com.crio.api.domain.usuario.Usuario;
 import com.crio.api.repositories.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +25,7 @@ public class EventoService {
         newEvento.setPublicoAlvo(data.publicoAlvo());
         newEvento.setLocal(data.local());
         newEvento.setPrivado(data.privado());
+        newEvento.setUsuario(data.usuario());
         eventoRepository.save(newEvento);
 
         return  newEvento;
