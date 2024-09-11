@@ -22,10 +22,13 @@ public class EventoService {
         newEvento.setDescricao(data.descricao());
         newEvento.setInicio(data.inicio());
         newEvento.setFim(data.fim());
-        newEvento.setPublicoAlvo(data.publicoAlvo());
         newEvento.setLocal(data.local());
         newEvento.setPrivado(data.privado());
+        newEvento.setLinkEvento(data.linkEvento());
+        newEvento.setComoChegar(data.comoChegar());
+        newEvento.setLinkForms(data.linkForms());
         newEvento.setUsuario(data.usuario());
+        newEvento.setEndereco(data.endereco());
         eventoRepository.save(newEvento);
 
         return  newEvento;
@@ -45,10 +48,13 @@ public class EventoService {
         updatedEvento.setDescricao(eventoResponseDTO.descricao());
         updatedEvento.setInicio(eventoResponseDTO.inicio());
         updatedEvento.setFim(eventoResponseDTO.fim());
-        updatedEvento.setPublicoAlvo(eventoResponseDTO.publicoAlvo());
         updatedEvento.setLocal(eventoResponseDTO.local());
         updatedEvento.setPrivado(eventoResponseDTO.privado());
+        updatedEvento.setLinkEvento(eventoResponseDTO.linkEvento());
+        updatedEvento.setComoChegar(eventoResponseDTO.comoChegar());
+        updatedEvento.setLinkForms(eventoResponseDTO.linkForms());
         updatedEvento.setUsuario(eventoResponseDTO.usuario());
+        updatedEvento.setEndereco(eventoResponseDTO.endereco());
 
         return eventoRepository.save(updatedEvento);
     }
