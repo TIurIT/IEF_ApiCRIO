@@ -30,6 +30,13 @@ public class UsuarioService {
         return newUsuario;
     }
 
+    //save no repository
+    public Usuario save(String nomeCompleto, String email, String senha, int tipo, LocalDateTime createdAt, LocalDateTime updatedAt){
+        return usuarioRepository.saveUsuario( nomeCompleto, email, senha, tipo, createdAt, updatedAt);
+    }
+
+
+
     public List<Usuario> getAllUsers(){
         return usuarioRepository.findAll();
     }

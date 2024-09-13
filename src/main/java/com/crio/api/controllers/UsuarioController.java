@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,19 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @PostMapping("/save") //       /api/usuario/save
+    public Usuario save(@RequestBody UsuarioRequestDTO usuarioRequestDTO){
+
+        return usuarioService.save(
+                usuarioRequestDTO.nomeCompleto(),
+                usuarioRequestDTO.email(),
+                usuarioRequestDTO.senha(),
+                usuarioRequestDTO.tipo(),
+                LocalDateTime.now(),
+                LocalDateTime.now()
+        );
+    }
 
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<Usuario> create(
