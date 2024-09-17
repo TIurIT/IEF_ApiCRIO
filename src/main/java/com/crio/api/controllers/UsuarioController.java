@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 // @Controller Controla o fluxo de dados sendo eles imagens,infos e etc.
@@ -23,8 +24,8 @@ public class UsuarioController {
 
     //Querys
     @GetMapping("/email")
-    public ResponseEntity<List<Usuario>> findByEmail(@PathVariable String email){
-        List<Usuario> usuarios = usuarioService.findByEmail(email);
+    public ResponseEntity<Optional<Usuario>> findByEmail(@PathVariable String email){
+        Optional<Usuario> usuarios = usuarioService.findByEmail(email);
         return ResponseEntity.ok(usuarios);
     }
 

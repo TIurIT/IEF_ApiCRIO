@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -54,7 +55,7 @@ public class UsuarioService {
         usuarioRepository.delete(usuario);
     }
 
-    public List<Usuario> findByEmail(String email){
+    public Optional<Usuario> findByEmail(String email){
         return usuarioRepository.findByEmail(email);
     }
 
