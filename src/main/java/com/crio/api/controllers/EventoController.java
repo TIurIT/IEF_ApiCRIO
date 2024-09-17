@@ -1,9 +1,7 @@
 package com.crio.api.controllers;
 
 import com.crio.api.domain.endereco.Endereco;
-import com.crio.api.domain.evento.Evento;
-import com.crio.api.domain.evento.EventoRequestDTO;
-import com.crio.api.domain.evento.EventoResponseDTO;
+import com.crio.api.domain.evento.*;
 import com.crio.api.domain.usuario.Usuario;
 import com.crio.api.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +18,38 @@ public class EventoController {
 
     @Autowired
     private EventoService eventoService;
+
+    //Querys
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Evento>> findByUsuarioId(@PathVariable
+                                                        UUID usuarioId){
+        List<Evento> eventos = eventoService.findByUsuarioId(usuarioId);
+        return ResponseEntity.ok(eventos);
+    }
+    //buscar evento por intervalo de data
+    @PostMapping("/intervalo")
+    public ResponseEntity<List<Evento>> findByIntervaloData(
+            @RequestBody IntervaloDataDTO intervaloDataDTO){
+        List<Evento> eventos = eventoService.findByIntervaloData(
+                intervaloDataDTO);
+        return ResponseEntity.ok(eventos);
+    }
+    //buscar eventos por local
+    @GetMapping("/local/{local}")
+    public ResponseEntity<List<Evento>> findByLocal(
+            @PathVariable String local){
+        List<Evento> eventos = eventoService.findByLocal(local);
+        return ResponseEntity.ok(eventos);
+    }
+    @PostMapping("/local-intervalo")
+    public ResponseEntity<List<Evento>> findByLocalAndIntervaloData(
+            @RequestBody LocalIntervaloDTO localIntervaloDTO){
+        List<Evento> eventos = eventoService.findByLocalAndIntervaloData(
+                localIntervaloDTO.Local(),
+                localIntervaloDTO.inicio(),
+                localIntervaloDTO.fim() );
+        return ResponseEntity.ok(eventos);
+    }
 
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<Evento> create(

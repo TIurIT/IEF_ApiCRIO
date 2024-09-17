@@ -19,14 +19,20 @@ public interface UsuarioRepository extends JpaRepository <Usuario, UUID> {
     //selecionar Usuario pelo id
     @Query("SELECT u FROM Usuario u WHERE u.id = :id")
     Optional<Usuario> findByIdUsuario(UUID id);
-    //salvar Usuario
-    @Query("INSERT INTO Usuario(nomeCompleto, email, senha, tipo, createdAt, updatedAt) VALUES(:nomeCompleto, :email, :senha, :tipo, :createdAt, :updatedAt)")
-    Usuario saveUsuario(String nomeCompleto, String email, String senha, int tipo, LocalDateTime createdAt, LocalDateTime updatedAt);
-//    //update Usuario
-//    @Query("UPDATE Usuario u SET u.nomeCompleto=:nomeCompleto, u.email=:email, u.senha=:senha, u.tipo=:tipo, u.updatedAt=:updatedAt WHERE u.id=:id")
-//    void update(UUID id, String nomeCompleto, String email, String senha, int tipo, LocalDateTime updatedAt);
+    //update Usuario
+    @Query("UPDATE Usuario u SET u.nomeCompleto=:nomeCompleto, u.email=:email, u.senha=:senha, u.tipo=:tipo, u.updatedAt=:updatedAt WHERE u.id=:id")
+    void update(UUID id, String nomeCompleto, String email, String senha, int tipo, LocalDateTime updatedAt);
     //delete Usuario
     @Query("DELETE FROM Usuario u WHERE u.id=:id")
     void deleteByIdUsuario(UUID id);
+    //selecionar email
+    @Query("SELECT u FROM Usuario u WHERE u.email=:email")
+    List<Usuario> findByEmail(String email);
+    //selecionar tipo
+    @Query("SELECT u FROM Usuario u WHERE u.tipo=:tipo")
+    List<Usuario> findByTipo(int tipo);
+    //selecionar por criação
+    @Query("SELECT u FROM Usuario u WHERE u.createdAt BETWEEN :createdAt AND :fim")
+    List<Usuario> findByCreatedAtBetween(LocalDateTime createdAt, LocalDateTime fim);
 
 }

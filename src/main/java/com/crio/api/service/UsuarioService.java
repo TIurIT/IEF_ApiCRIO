@@ -5,7 +5,6 @@ import com.crio.api.domain.usuario.UsuarioRequestDTO;
 import com.crio.api.domain.usuario.UsuarioResponseDTO;
 import com.crio.api.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -29,12 +28,6 @@ public class UsuarioService {
 
         return newUsuario;
     }
-
-    //save no repository
-    public Usuario save(String nomeCompleto, String email, String senha, int tipo, LocalDateTime createdAt, LocalDateTime updatedAt){
-        return usuarioRepository.saveUsuario( nomeCompleto, email, senha, tipo, createdAt, updatedAt);
-    }
-
 
 
     public List<Usuario> getAllUsers(){
@@ -60,4 +53,17 @@ public class UsuarioService {
         Usuario usuario = getUserById(id);
         usuarioRepository.delete(usuario);
     }
+
+    public List<Usuario> findByEmail(String email){
+        return usuarioRepository.findByEmail(email);
+    }
+
+    public List<Usuario> findByTipo(int tipo){
+        return usuarioRepository.findByTipo(tipo);
+    }
+
+    public List<Usuario> findByCreatedAtBetween(LocalDateTime createdAt,LocalDateTime fim  ){
+        return usuarioRepository.findByCreatedAtBetween(createdAt,fim);
+    }
+
 }

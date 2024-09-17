@@ -19,14 +19,18 @@ public interface EnderecoRepositiry extends JpaRepository <Endereco, UUID> {
     //selecionar Endereco pelo id
     @Query("SELECT e FROM Endereco e WHERE e.id = :id")
     Optional<Endereco> findByIdEndereco(UUID id);
-    //salvar Endereco
-    @Query("INSERT INTO Endereco(cidade, uf) VALUES(:cidade, :uf)")
-    Endereco saveEndereco(String cidade, String uf);
-    //    //update Endereco
-//    @Query("UPDATE Endereco e SET e.cidade=:cidade, e.uf=:uf WHERE e.id=:id")
-//    void update(UUID id, String cidade, String uf);
+    //update endereco
+    @Query("UPDATE Endereco e SET e.cidade=:cidade, e.uf=:uf WHERE e.id=:id")
+    void update(UUID id, String cidade, String uf);
     //delete Endereco
     @Query("DELETE FROM Endereco e WHERE e.id=:id")
     void deleteByIdEndereco(UUID id);
-    
+    //selecionar cidade
+    @Query("SELECT e FROM Endereco e WHERE e.cidade = :cidade")
+    List<Endereco> findByCity(String cidade);
+    //selecionar estado
+    @Query("SELECT e FROM Endereco e WHERE e.uf=:uf")
+    List<Endereco> findByUf(String uf);
+
+
 }

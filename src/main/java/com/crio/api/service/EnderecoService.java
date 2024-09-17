@@ -9,28 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class EnderecoService {
    
     @Autowired
-    private EnderecoRepositiry EnderecoRepository;
+    private EnderecoRepositiry enderecoRepositiry;
 
     public Endereco createEndereco(EnderecoRequestDTO data){
         Endereco newEndereco = new Endereco();
         newEndereco.setCidade(data.cidade());
         newEndereco.setUf(data.uf());
-        EnderecoRepository.save(newEndereco);
+        enderecoRepositiry.save(newEndereco);
 
         return newEndereco;
     }
 
     public List<Endereco> getAllEnderecos(){
-        return EnderecoRepository.findAll();
+        return enderecoRepositiry.findAll();
     }
 
     public Endereco getEnderecoById(UUID id) {
-        return  EnderecoRepository.findById(id).orElseThrow(() -> new RuntimeException("Endereço não encontrado."));
+        return  enderecoRepositiry.findById(id).orElseThrow(() -> new RuntimeException("Endereço não encontrado."));
     }
 
     public Endereco updateEndereco(UUID id, EnderecoResponseDTO EnderecoResponseDTO) {
@@ -38,11 +39,20 @@ public class EnderecoService {
         updatedEndereco.setCidade(EnderecoResponseDTO.cidade());
         updatedEndereco.setUf(EnderecoResponseDTO.uf());
 
-        return EnderecoRepository.save(updatedEndereco);
+        return enderecoRepositiry.save(updatedEndereco);
     }
 
     public void deleteEndereco(UUID id){
         Endereco Endereco = getEnderecoById(id);
-        EnderecoRepository.delete(Endereco);
+        enderecoRepositiry.delete(Endereco);
     }
+
+    public List<Endereco> findByCity(String cidade){
+        return enderecoRepositiry.findByCity(cidade);
+    }
+
+    public List<Endereco> findByUf(String uf){
+        return enderecoRepositiry.findByUf(uf);
+    }
+
 }

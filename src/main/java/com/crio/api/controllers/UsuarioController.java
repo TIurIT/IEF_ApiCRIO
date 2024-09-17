@@ -1,6 +1,7 @@
 package com.crio.api.controllers;
 
 
+import com.crio.api.domain.usuario.CreatedBetweenDTO;
 import com.crio.api.domain.usuario.Usuario;
 import com.crio.api.domain.usuario.UsuarioRequestDTO;
 import com.crio.api.domain.usuario.UsuarioResponseDTO;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,18 +21,27 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/save") //       /api/usuario/save
-    public Usuario save(@RequestBody UsuarioRequestDTO usuarioRequestDTO){
-
-        return usuarioService.save(
-                usuarioRequestDTO.nomeCompleto(),
-                usuarioRequestDTO.email(),
-                usuarioRequestDTO.senha(),
-                usuarioRequestDTO.tipo(),
-                LocalDateTime.now(),
-                LocalDateTime.now()
-        );
+    //Querys
+    @GetMapping("/email")
+    public ResponseEntity<List<Usuario>> findByEmail(@PathVariable String email){
+        List<Usuario> usuarios = usuarioService.findByEmail(email);
+        return ResponseEntity.ok(usuarios);
     }
+
+    @GetMapping("/tipo")
+    public ResponseEntity<List<Usuario>> findByTipo(@PathVariable int tipo){
+        List<Usuario> usuarios = usuarioService.findByTipo(tipo);
+        return ResponseEntity.ok(usuarios);
+    }
+
+    @GetMapping("/date")
+    public ResponseEntity<List<Usuario>> findByCreatedAtBetween(@RequestBody CreatedBetweenDTO createdBetweenDTO){
+        List<Usuario> usuarios = usuarioService.findByCreatedAtBetween(
+                createdBetweenDTO.createdAt(),
+                createdBetweenDTO.fim() );
+        return ResponseEntity.ok(usuarios);
+    }
+
 
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<Usuario> create(
