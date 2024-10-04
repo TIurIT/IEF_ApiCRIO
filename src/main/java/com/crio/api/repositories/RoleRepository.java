@@ -1,9 +1,8 @@
-package tech.buildrun.springsecurity.repository;
+package com.crio.api.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tech.buildrun.springsecurity.entities.Role;
-import tech.buildrun.springsecurity.entities.User;
+import com.crio.api.domain.Role;
 
 import java.util.UUID;
 

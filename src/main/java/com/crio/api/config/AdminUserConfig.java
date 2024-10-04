@@ -1,13 +1,13 @@
-package tech.buildrun.springsecurity.config;
+package com.crio.api.config;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-import tech.buildrun.springsecurity.entities.Role;
-import tech.buildrun.springsecurity.entities.User;
-import tech.buildrun.springsecurity.repository.RoleRepository;
-import tech.buildrun.springsecurity.repository.UserRepository;
+import com.crio.api.domain.Role;
+import com.crio.api.domain.User;
+import com.crio.api.repositories.RoleRepository;
+import com.crio.api.repositories.UserRepository;
 
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package tech.buildrun.springsecurity.controller;
+package com.crio.api.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -9,10 +9,10 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import tech.buildrun.springsecurity.controller.dto.LoginRequest;
-import tech.buildrun.springsecurity.controller.dto.LoginResponse;
-import tech.buildrun.springsecurity.entities.Role;
-import tech.buildrun.springsecurity.repository.UserRepository;
+import com.crio.api.controllers.dto.LoginRequest;
+import com.crio.api.controllers.dto.LoginResponse;
+import com.crio.api.domain.Role;
+import com.crio.api.repositories.UserRepository;
 
 import java.time.Instant;
 import java.util.stream.Collectors;

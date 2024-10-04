@@ -1,4 +1,4 @@
-package tech.buildrun.springsecurity.entities;
+package com.crio.api.domain;
 
 import jakarta.persistence.*;
 

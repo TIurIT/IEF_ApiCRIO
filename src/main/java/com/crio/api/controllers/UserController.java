@@ -1,4 +1,4 @@
-package tech.buildrun.springsecurity.controller;
+package com.crio.api.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import tech.buildrun.springsecurity.controller.dto.CreateUserDto;
-import tech.buildrun.springsecurity.entities.Role;
-import tech.buildrun.springsecurity.entities.User;
-import tech.buildrun.springsecurity.repository.RoleRepository;
-import tech.buildrun.springsecurity.repository.UserRepository;
+import com.crio.api.controllers.dto.CreateUserDto;
+import com.crio.api.domain.Role;
+import com.crio.api.domain.User;
+import com.crio.api.repositories.RoleRepository;
+import com.crio.api.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Set;

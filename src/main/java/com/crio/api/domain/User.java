@@ -1,8 +1,8 @@
-package tech.buildrun.springsecurity.entities;
+package com.crio.api.domain;
 
 import jakarta.persistence.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import tech.buildrun.springsecurity.controller.dto.LoginRequest;
+import com.crio.api.controllers.dto.LoginRequest;
 
 import java.util.Set;
 import java.util.UUID;
